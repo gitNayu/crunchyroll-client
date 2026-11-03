@@ -30,11 +30,11 @@ Crunchyroll Client aims to simplify that process by providing reusable, open-sou
 
 - Spend less time implementing API interactions and more time building your application.
 
-### Disclaimer
+## Disclaimer
 This is an independent, **unofficial project**. It is not affiliated with, endorsed by, or associated with *Crunchyroll, LLC*.
 Crunchyroll is a trademark of its respective owner.
 
-## Third-Party Usage and Responsibility
+### Third-Party Usage and Responsibility
 
 This project is provided as an unofficial API client for development, interoperability, and independent application integrations.
 
@@ -55,6 +55,34 @@ git clone https://github.com/gitNayu/cr-client-py.git
 cd cr-client-py
 pip install .
 ```
+
+### TypeScript Client
+Coming Soon..
+
+### Quick Start
+
+```python
+from cr_client_py import Crunchyroll
+
+cr = Crunchyroll()  # no account needed
+
+# 1. Search
+hits, key = cr.search('Spy x Family')
+series_id = hits[0]['id']
+
+# 2. Get all metadata (every language)
+meta, key = cr.get_series_metadata(series_id, episodes=False)
+print(meta['localized']['en-US']['title'])
+
+# 3. Get image URLs
+urls, key = cr.get_image_urls(meta)
+print(urls['images'].get('poster_tall'))
+
+# 4. See which client key was used
+print(key.label)
+```
+
+Every function returns `(data, key)`. The library only returns data and URLs. It does not save files or download images.
 
 ### Contact Information
 #### E-Mails:
