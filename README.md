@@ -56,6 +56,43 @@ cd cr-client-py
 pip install .
 ```
 
+### Keys and Authorization
+
+**This project does not ship any keys, secrets, tokens, or other authorization data.** You must provide your own.
+
+- No client keys or client secrets are included in this repository.
+- No account logins or tokens are included.
+- You are responsible for how you get and use your keys, and for following the terms of the service.
+
+#### Setup
+
+1. Copy `.env.example` to `keys.env`.
+2. Add one line per client, in this format:
+
+   ```
+   NAME=base64(key:secret)
+   ```
+
+   `NAME` can be any name you choose.
+
+3. Set `ACTIVE` to the name of the key you want to use.
+
+Example `keys.env` (fake values):
+
+```
+ACTIVE=ANDROID_TV
+ANDROID_TV=a2V5OnNlY3JldA==
+ANDROID_PHONE=b3RoZXJrZXk6b3RoZXJzZWNyZXQ=
+```
+
+To make the base64 value:
+
+```bash
+python3 -c "import base64; print(base64.b64encode(b'key:secret').decode())"
+```
+
+Never commit `keys.env`. It is listed in `.gitignore`. Base64 is not encryption, so keep the file private.
+
 ### TypeScript Client
 Coming Soon..
 
